@@ -8,8 +8,19 @@
 </head>
 
 <body>
+  <div id="root">
+    <li>hello, {{name}}</li>
+  </div>
   <script>
     Vue.config.productionTip = false
+
+    // 创建Vue实例
+    const x = new Vue({
+      el: '#root', // el用于指定Vue为哪个实例，值是css选择器
+      data: {
+        name: 'meehom'
+      }
+    })
   </script>
 
 </body>
