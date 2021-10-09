@@ -6,7 +6,7 @@
 
 > 下载Vue.js 和 Vue.min.js 。前者是开发版，会有一些相应的提示，后者是线上版，是上线用的，量级较轻
 
-![image-20211009223549994](C:\Users\12620\AppData\Roaming\Typora\typora-user-images\image-20211009223549994.png)
+![image-20211009225033595](https://gitee.com/meehom_liao/typera/raw/master/img/202110092250760.png)
 
 开发版本下载下来是vue.js，生产版本是vue.min.js
 
