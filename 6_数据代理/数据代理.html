@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    let number = 20
+    let person = {
+      name: '张三',
+      sex: '男',
+    }
+    Object.defineProperty(person, 'age', {
+      // value: 18,
+      // enumerable: true,
+      // writable: true,
+      // configurable: true,
+
+      get() {
+        return number
+      },
+
+      set(value) {
+        number = value
+      }
+    })
+    console.log(person)
+  </script>
+</body>
+
+</html>

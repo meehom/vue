@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h1>单向绑定</h1><input type="text" :value="value" /><br />
+    <h1>双向绑定</h1><input type="text" v-model="value" />
+  </div>
+  <script>
+    Vue.config.productionTip = false
+    new Vue({
+      el: '#root',
+      data: {
+        value: 'meehom'
+      }
+    })
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h1>hello,{{name}}</h1>
+  </div>
+  <script>
+    Vue.config.productionTip = false
+    new Vue({
+      el: '#root', // el的第一种写法
+      // data: {
+      //   name: 'meehom' // data 的第一种写法，对象式
+      // }
+      data: function () {
+        return {
+          name: 'meehom'
+        }
+      }
+    })
+    // v.$mount = '#root' // el的第二种写法
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h2>欢迎来到{{name}}学习</h2>
+    <input type="text" placeholder="按下回车提示键入" @keyup.enter='showInfo' />
+  </div>
+  <script>
+    Vue.config.productionTip = false
+    new Vue({
+      el: '#root',
+      data: {
+        name: 'meehom学院'
+      },
+      methods: {
+        showInfo(e) {
+          console.log(e.target.value)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
