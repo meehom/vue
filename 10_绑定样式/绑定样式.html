@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <style>
+    .basic {
+      border: 14px;
+      background-color: red;
+    }
+
+    .b {
+      background-color: blue;
+    }
+
+    .c {
+      background-color: green;
+    }
+  </style>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <dir id="root">
+    <h2 class="basic" :class='mod' @click='changeMod'>hello</h2>
+  </dir>
+  <script>
+    Vue.config.productionTip = false
+    new Vue({
+      el: '#root',
+      data: {
+        mod: 'b'
+      },
+      methods: {
+        changeMod() {
+          this.mod = 'c'
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

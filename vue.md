@@ -522,3 +522,347 @@ new Vue({
 </html>
 ```
 
+**1.9.3 利用computed获取计算属性**
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    姓:<input type="text" v-model="firstName" /><br />
+    名:<input type="text" v-model="lastName" /><br />
+    全名：<span>{{fullName}}</span>
+  </div>
+  <script>
+    Vue.config.productionTip = false
+    new Vue({
+      el: '#root',
+      data: {
+        firstName: '张',
+        lastName: '三',
+      },
+      // 写法1
+      // computed: {
+      //   fullName: {
+      //     get() {
+      //       return this.firstName + '-' + this.lastName
+      //     }
+      //   }
+      // }
+      // 写法2
+      // computed: {
+      //   fullName: function () {
+      //     return this.firstName + '-' + this.lastName
+
+      //   }
+
+      // }
+      // 简写
+      computed: {
+        fullName() {
+          return this.firstName + '-' + this.lastName
+        }
+      }
+
+    })
+  </script>
+</body>
+
+</html>
+```
+
+### 1.10 监视属性
+
+>天气案例
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h2>今天天气很{{info}}</h2>
+    <!-- <button @click="ishot = !ishot">切换天气</button> -->
+    <button @click="changeWeather">切换天气</button>
+  </div>
+  <script>
+    Vue.config.productionTip = false
+    new Vue({
+      el: '#root',
+      data: {
+        ishot: true
+      },
+      computed: {
+        info() {
+          return this.ishot ? '炎热' : '凉爽'
+        }
+      },
+      methods: {
+        changeWeather() {
+          this.ishot = !this.ishot
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
+```
+
+>watch 实现
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h2>今天天气很{{info}}</h2>
+    <!-- <button @click="ishot = !ishot">切换天气</button> -->
+    <button @click="changeWeather">切换天气</button>
+  </div>
+  <script>
+    Vue.config.productionTip = false
+    new Vue({
+      el: '#root',
+      data: {
+        ishot: true
+      },
+      computed: {
+        info() {
+          return this.ishot ? '炎热' : '凉爽'
+        }
+      },
+      methods: {
+        changeWeather() {
+          this.ishot = !this.ishot
+        }
+      },
+      watch: {
+        ishot: {
+          immediate: true,
+          handler(newValue, oldValue) {
+            console.log('ishot被修改了', newValue, oldValue);
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
+```
+
+>深度监视:deep:true
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h2>今天天气很{{info}}</h2>
+    <h2>{{number.a}}</h2>
+    <!-- <button @click="ishot = !ishot">切换天气</button> -->
+    <button @click="changeWeather">切换天气</button>
+    <button @click="number.a++">点我改变a的值</button>
+  </div>
+  <script>
+    Vue.config.productionTip = false
+    new Vue({
+      el: '#root',
+      data: {
+        ishot: true,
+        number: {
+          a: 1,
+          b: 2
+        }
+      },
+      computed: {
+        info() {
+          return this.ishot ? '炎热' : '凉爽'
+        }
+      },
+      methods: {
+        changeWeather() {
+          this.ishot = !this.ishot
+        }
+      },
+      watch: {
+        // 简写，只有handler
+        // ishot(newValue, oldValue) {
+        //     console.log('ishot被修改了', newValue, oldValue);
+        // }
+
+        ishot: {
+          immediate: true,
+          handler(newValue, oldValue) {
+            console.log('ishot被修改了', newValue, oldValue);
+          }
+        },
+        'number': {
+          deep: true,
+          immediate: true,
+          handler(newValue, oldValue) {
+            console.log('number被修改了', newValue, oldValue);
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
+```
+
+### 1.11 绑定样式
+
+>可以通过：class来绑定样式
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <style>
+    .basic {
+      border: 14px;
+      background-color: red;
+    }
+
+    .b {
+      background-color: blue;
+    }
+
+    .c {
+      background-color: green;
+    }
+  </style>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <dir id="root">
+    <h2 class="basic" :class='mod' @click='changeMod'>hello</h2>
+  </dir>
+  <script>
+    Vue.config.productionTip = false
+    new Vue({
+      el: '#root',
+      data: {
+        mod: 'b'
+      },
+      methods: {
+        changeMod() {
+          this.mod = 'c'
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
+```
+
+### 1.12 条件渲染
+
+> 可以通过v-if或者v-show指定标签是否显示
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h2 v-if='true'>{{name}}</h2>
+  </div>
+  <script>
+    Vue.config.productionTip = false
+    new Vue({
+      el: '#root',
+      data: {
+        name: 'meehom'
+      }
+    })
+  </script>
+</body>
+
+</html>
+```
+
+### 1.13 列表渲染
+
+> 可以用v-for 遍历列表或者对象
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <li v-for="(p,index) in persons" :key="index">
+      {{p.name}}-{{p.ages}}-{{index}}
+    </li>
+  </div>
+  <script>
+    Vue.config.productionTip = false
+    new Vue({
+      el: '#root',
+      data: {
+        persons: [
+          {
+            name: 'meehom',
+            ages: 12
+          },
+          {
+            name: 'mi',
+            ages: 14
+          },
+        ]
+      }
+    })
+  </script>
+</body>
+
+</html>
+```
+

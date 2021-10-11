@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <li v-for="(p,index) in persons" :key="index">
+      {{p.name}}-{{p.ages}}-{{index}}
+    </li>
+  </div>
+  <script>
+    Vue.config.productionTip = false
+    new Vue({
+      el: '#root',
+      data: {
+        persons: [
+          {
+            name: 'meehom',
+            ages: 12
+          },
+          {
+            name: 'mi',
+            ages: 14
+          },
+        ]
+      }
+    })
+  </script>
+</body>
+
+</html>

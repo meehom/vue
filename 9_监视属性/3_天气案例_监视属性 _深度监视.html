@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h2>今天天气很{{info}}</h2>
+    <h2>{{number.a}}</h2>
+    <!-- <button @click="ishot = !ishot">切换天气</button> -->
+    <button @click="changeWeather">切换天气</button>
+    <button @click="number.a++">点我改变a的值</button>
+  </div>
+  <script>
+    Vue.config.productionTip = false
+    new Vue({
+      el: '#root',
+      data: {
+        ishot: true,
+        number: {
+          a: 1,
+          b: 2
+        }
+      },
+      computed: {
+        info() {
+          return this.ishot ? '炎热' : '凉爽'
+        }
+      },
+      methods: {
+        changeWeather() {
+          this.ishot = !this.ishot
+        }
+      },
+      watch: {
+        // 简写，只有handler
+        // ishot(newValue, oldValue) {
+        //     console.log('ishot被修改了', newValue, oldValue);
+        // }
+
+        ishot: {
+          immediate: true,
+          handler(newValue, oldValue) {
+            console.log('ishot被修改了', newValue, oldValue);
+          }
+        },
+        'number': {
+          deep: true,
+          immediate: true,
+          handler(newValue, oldValue) {
+            console.log('number被修改了', newValue, oldValue);
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
