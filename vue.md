@@ -866,3 +866,74 @@ new Vue({
 </html>
 ```
 
+### 1.14 过滤器（*）
+
+### 1.15 内部指令（*）
+
+### 1.16 自定义指令（*）
+
+### 1.17 生命周期（*）
+
+### 1.18 组件
+
+> 组件可以达到代码的复用，Vue通过Vue.extend()完成，同时在components进行注册,之后可以在容器中直接进行使用
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <school></school>
+  </div>
+
+  <script>
+    Vue.config.productionTip = false
+    const school = Vue.extend({
+      template: `
+        <div>
+        <h2>学校名称:{{schoolName}}</h2>
+        <h2>学校地址:{{address}}</h2>
+        </div>
+      `,
+      data() {
+        return {
+          schoolName: 'meehom学院',
+          address: '上海嘉定'
+        }
+      },
+    })
+    new Vue({
+      el: '#root',
+      data: {
+
+      },
+      components: {
+        school: school
+      }
+    })
+  </script>
+</body>
+
+</html>
+```
+
+### 1.19 vue 脚手架
+
+> cmd 安装vue脚手架
+
+```cmd
+// 切换到淘宝镜像
+npm config set registry https://registry.npm.taobao.org
+// 安装脚手架
+npm install -g @vue/cli
+// 创建helloworld脚手架
+vue create hello_vue
+```
+
